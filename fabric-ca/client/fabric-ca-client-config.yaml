@@ -1,0 +1,95 @@
+
+#############################################################################
+#   This is a configuration file for the fabric-ca-client command.
+#
+#   COMMAND LINE ARGUMENTS AND ENVIRONMENT VARIABLES
+#   ------------------------------------------------
+#   Each configuration element can be overridden via command line
+#   arguments or environment variables.  The precedence for determining
+#   the value of each element is as follows:
+#   1) command line argument
+#      Examples:
+#      a) --url https://localhost:7054
+#         To set the fabric-ca server url
+#      b) --tls.client.certfile certfile.pem
+#         To set the client certificate for TLS
+#   2) environment variable
+#      Examples:
+#      a) FABRIC_CA_CLIENT_URL=https://localhost:7054
+#         To set the fabric-ca server url
+#      b) FABRIC_CA_CLIENT_TLS_CLIENT_CERTFILE=certfile.pem
+#         To set the client certificate for TLS
+#   3) configuration file
+#   4) default value (if there is one)
+#      All default values are shown beside each element below.
+#
+#   FILE NAME ELEMENTS
+#   ------------------
+#   All filename elements below end with the word "file".
+#   For example, see "certfile" and "keyfile" in the "ca" section.
+#   The value of each filename element can be a simple filename, a
+#   relative path, or an absolute path.  If the value is not an
+#   absolute path, it is interpretted as being relative to the location
+#   of this configuration file.
+#
+#############################################################################
+
+#############################################################################
+# Client Configuration
+#############################################################################
+
+# URL of the Fabric-ca-server (default: http://localhost:7054)
+URL: http://127.0.0.1:7054
+
+# Membership Service Provider (MSP) directory
+# This is useful when the client is used to enroll a peer or orderer, so
+# that the enrollment artifacts are stored in the format expected by MSP.
+MSPDir:
+
+#############################################################################
+#    TLS section for secure socket connection
+#############################################################################
+tls:
+  # TLS section for secure socket connection
+  certfiles:
+  client:
+    certfile:
+    keyfile:
+
+#############################################################################
+#  Certificate Signing Request section for generating the CSR for
+#  an enrollment certificate (ECert)
+#############################################################################
+csr:
+  cn: adminx
+  names:
+    - C: US
+      ST: North Carolina
+      L:
+      O: Hyperledger
+      OU: Fabric
+  hosts:
+    - 192.168.0.114
+  ca:
+    pathlen:
+    pathlenzero:
+    expiry:
+
+#############################################################################
+#  Registration section used to register a new user with fabric-ca server
+#############################################################################
+id:
+  name:
+  type: peer
+  affiliation: org1.department1
+  attributes:
+    - name: hf.Revoker
+      value: true
+
+#############################################################################
+#  Enrollment section used to enroll a user with fabric-ca server
+#############################################################################
+enrollment:
+  hosts:
+  profile:
+  label:
